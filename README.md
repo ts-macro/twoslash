@@ -3,11 +3,11 @@
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 
-Extended Twoslash for ts-macro support.
+Extended Twoslash for ts-macro support. Forked By [twoslash-vue](https://github.com/twoslashes/twoslash/tree/main/packages/twoslash-vue).
 
 ## License
 
-[MIT](./LICENSE) License © 2023-PRESENT [Anthony Fu](https://github.com/antfu)
+[MIT](./LICENSE) License © 2023-PRESENT [zhiyuanzmj](https://github.com/zhiyaunzmj)
 
 <!-- Badges -->
 
