@@ -46,7 +46,7 @@
     "prepublishOnly": "nr build",
     "start": "esno src/index.ts",
     "test": "vitest",
-    "release": "bumpp -r && pnpm -r publish"
+    "release": "bumpp -r && pnpm publish --access public --no-git-checks"
   },
   "peerDependencies": {
     "typescript": "*"
