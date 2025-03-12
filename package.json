@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "packageManager": "pnpm@10.4.1",
   "description": "Extended Twoslash for ts-macro support",
-  "author": "Anthony Fu <anthonyfu117@hotmail.com>",
+  "author": "zhiyuanzmj",
   "license": "MIT",
   "funding": "https://github.com/sponsors/zhiyaunzmj",
   "homepage": "https://github.com/twoslashes/twoslash#readme",
@@ -45,7 +45,8 @@
     "dev": "unbuild --stub",
     "prepublishOnly": "nr build",
     "start": "esno src/index.ts",
-    "test": "vitest"
+    "test": "vitest",
+    "release": "bumpp -r && pnpm -r publish"
   },
   "peerDependencies": {
     "typescript": "*"
