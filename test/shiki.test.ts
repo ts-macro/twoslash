@@ -3,7 +3,7 @@ import { createHighlighter } from 'shiki'
 import { expect, it } from 'vitest'
 import { createTwoslasher } from '../src'
 
-const code = await import('./fixtures/example.vue?raw').then(m => m.default)
+const code = await import('./fixtures/example.tsx?raw').then(m => m.default)
 
 const styleHeader = [
   '<head>',
@@ -13,26 +13,24 @@ const styleHeader = [
   '',
 ].join('\n')
 
-const twoslasherVue = createTwoslasher()
+const twoslasherTsm = createTwoslasher()
 const shiki = await createHighlighter({
   themes: [
     'vitesse-dark',
   ],
   langs: [
-    'vue',
     'ts',
     'tsx',
-    'vue',
   ],
 })
 
-it('highlight vue', async () => {
+it('highlight tsx', async () => {
   const result = await shiki.codeToHtml(code, {
-    lang: 'vue',
+    lang: 'tsx',
     theme: 'vitesse-dark',
     transformers: [
-      createTransformerFactory(twoslasherVue)({
-        langs: ['ts', 'tsx', 'vue'],
+      createTransformerFactory(twoslasherTsm)({
+        langs: ['ts', 'tsx'],
         renderer: rendererRich({
           lang: 'ts',
         }),
@@ -40,8 +38,8 @@ it('highlight vue', async () => {
     ],
   })
 
-  expect(styleHeader + result)
-    .toMatchFileSnapshot('./results/renderer/example.vue.html')
+  await expect(styleHeader + result)
+    .toMatchFileSnapshot('./results/renderer/example.tsx.html')
 })
 
 const twoslasherRaw = createTwoslasher({
@@ -50,11 +48,11 @@ const twoslasherRaw = createTwoslasher({
 
 it('highlight raw', async () => {
   const result = await shiki.codeToHtml(code, {
-    lang: 'vue',
+    lang: 'tsx',
     theme: 'vitesse-dark',
     transformers: [
       createTransformerFactory(twoslasherRaw)({
-        langs: ['ts', 'tsx', 'vue'],
+        langs: ['ts', 'tsx'],
         renderer: rendererRich({
           lang: 'ts',
         }),
@@ -62,6 +60,6 @@ it('highlight raw', async () => {
     ],
   })
 
-  expect(styleHeader + result)
+  await expect(styleHeader + result)
     .toMatchFileSnapshot('./results/renderer/example.raw.html')
 })

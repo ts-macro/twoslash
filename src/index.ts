@@ -1,4 +1,5 @@
-import type { Language, SourceScript, VueCompilerOptions } from '@vue/language-core'
+import type { Language, SourceScript } from '@volar/language-core'
+import type { Options as TsmCompilerOptions } from 'ts-macro'
 import type {
   CompilerOptionDeclaration,
   CreateTwoslashOptions,
@@ -10,14 +11,9 @@ import type {
   TwoslashReturnMeta,
 } from 'twoslash'
 import type { CompilerOptions } from 'typescript'
-import {
-  createLanguage,
-  createVueLanguagePlugin,
-  defaultMapperFactory,
-  FileMap,
-  resolveVueCompilerOptions,
-  setupGlobalTypes,
-} from '@vue/language-core'
+import { getLanguagePlugins } from '@ts-macro/language-plugin'
+import { createLanguage, defaultMapperFactory, FileMap } from '@volar/language-core'
+import { createPlugin } from 'ts-macro'
 import {
   createTwoslasher as createTwoslasherBase,
   defaultCompilerOptions,
@@ -33,37 +29,44 @@ import {
 } from 'twoslash-protocol'
 import ts from 'typescript'
 
-export interface VueSpecificOptions {
+export interface TsmSpecificOptions {
   /**
-   * Vue Compiler options
+   * TS Macro Compiler options
    */
-  vueCompilerOptions?: Partial<VueCompilerOptions>
+  tsmCompilerOptions?: Partial<TsmCompilerOptions>
 }
 
-export interface CreateTwoslashVueOptions extends CreateTwoslashOptions, VueSpecificOptions {
+export interface CreateTwoslashTsmOptions extends CreateTwoslashOptions, TsmSpecificOptions {
   /**
-   * Render the generated code in the output instead of the Vue file
+   * Render the generated code in the output instead of the TSM file
    *
    * @default false
    */
   debugShowGeneratedCode?: boolean
 }
 
-export interface TwoslashVueExecuteOptions extends TwoslashExecuteOptions, VueSpecificOptions {
+export interface TwoslashTsmExecuteOptions extends TwoslashExecuteOptions, TsmSpecificOptions {
 }
 
+const placeholderPlugin = createPlugin(() => {
+  return {
+    name: 'ts-macro-placeholder',
+    resolveVirtualCode() {},
+  }
+})
+
 /**
- * Create a twoslasher instance that add additional support for Vue SFC.
+ * Create a twoslasher instance that add additional support for TSM.
  */
-export function createTwoslasher(createOptions: CreateTwoslashVueOptions = {}): TwoslashInstance {
+export function createTwoslasher(createOptions: CreateTwoslashTsmOptions = {}): TwoslashInstance {
   const twoslasherBase = createTwoslasherBase(createOptions)
   const cache = twoslasherBase.getCacheMap() as any as Map<string, Language> | undefined
   const tsOptionDeclarations = (ts as any).optionDeclarations as CompilerOptionDeclaration[]
 
-  function getVueLanguage(compilerOptions: Partial<CompilerOptions>, vueCompilerOptions: Partial<VueCompilerOptions>) {
+  function getTsmLanguage(compilerOptions: Partial<CompilerOptions>, tsmCompilerOptions: TsmCompilerOptions) {
     if (!cache)
       return getLanguage()
-    const key = `vue:${getObjectHash([compilerOptions, vueCompilerOptions])}`
+    const key = `tsm:${getObjectHash([compilerOptions, tsmCompilerOptions])}`
     if (!cache.has(key)) {
       const env = getLanguage()
       cache.set(key, env)
@@ -72,24 +75,21 @@ export function createTwoslasher(createOptions: CreateTwoslashVueOptions = {}): 
     return cache.get(key)!
 
     function getLanguage() {
-      const resolvedVueOptions = resolveVueCompilerOptions(vueCompilerOptions)
-      resolvedVueOptions.__setupedGlobalTypes = setupGlobalTypes(ts.sys.getCurrentDirectory(), resolvedVueOptions, ts.sys)
-      const vueLanguagePlugin = createVueLanguagePlugin<string>(ts, defaultCompilerOptions, resolvedVueOptions, id => id)
       return createLanguage(
-        [vueLanguagePlugin],
+        getLanguagePlugins(ts, defaultCompilerOptions, {
+          plugins: tsmCompilerOptions.plugins ?? [placeholderPlugin()],
+        }),
         new FileMap(ts.sys.useCaseSensitiveFileNames) as unknown as Map<string, SourceScript<string>>,
         () => {},
       )
     }
   }
 
-  function twoslasher(code: string, extension?: string, options: TwoslashVueExecuteOptions = {}) {
-    if (extension !== 'vue')
-      return twoslasherBase(code, extension, options)
-
-    const vueCompilerOptions: Partial<VueCompilerOptions> = {
-      ...createOptions.vueCompilerOptions,
-      ...options.vueCompilerOptions,
+  function twoslasher(code: string, extension?: string, options: TwoslashTsmExecuteOptions = {}) {
+    // createOptions
+    const tsmCompilerOptions: Partial<TsmCompilerOptions> = {
+      ...createOptions.tsmCompilerOptions,
+      ...options.tsmCompilerOptions,
     }
     const compilerOptions: Partial<CompilerOptions> = {
       ...defaultCompilerOptions,
@@ -128,7 +128,7 @@ export function createTwoslasher(createOptions: CreateTwoslashVueOptions = {}): 
           compilerOptions[flag.name] = flag.value
           break
         case 'handbookOptions':
-          // @ts-expect-error -- this is fine
+          // @ts-expect-error ignore
           handbookOptions[flag.name] = flag.value
           break
       }
@@ -145,9 +145,13 @@ export function createTwoslasher(createOptions: CreateTwoslashVueOptions = {}): 
          + strippedCode.slice(end)
     }
 
-    const lang = getVueLanguage(compilerOptions, vueCompilerOptions)
-    const sourceScript = lang.scripts.set('index.vue', ts.ScriptSnapshot.fromString(strippedCode))!
-    const fileCompiled = get(sourceScript.generated!.embeddedCodes.values(), 2)!
+    const lang = getTsmLanguage(compilerOptions, tsmCompilerOptions)
+    const sourceScript = lang.scripts.set('index.tsx', ts.ScriptSnapshot.fromString(strippedCode), 'typescriptreact')!
+    if (!sourceScript?.generated) {
+      return twoslasherBase(code, extension, options)
+    }
+
+    const fileCompiled = get(sourceScript.generated.embeddedCodes.values(), 0)!
     const compiled = fileCompiled.snapshot.getText(0, fileCompiled.snapshot.getLength())
 
     const map = defaultMapperFactory(fileCompiled.mappings)
@@ -246,7 +250,7 @@ export function createTwoslasher(createOptions: CreateTwoslashVueOptions = {}): 
       return true
     })
 
-    result.meta.extension = 'vue'
+    result.meta.extension = 'tsx'
 
     return result
   }
@@ -255,11 +259,6 @@ export function createTwoslasher(createOptions: CreateTwoslashVueOptions = {}): 
 
   return twoslasher
 }
-
-/**
- * @deprecated Use `createTwoslasher` instead.
- */
-export const createTwoslasherVue = createTwoslasher
 
 function isNotNull<T>(x: T | null | undefined): x is T {
   return x != null

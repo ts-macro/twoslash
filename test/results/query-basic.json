@@ -1,5 +1,5 @@
 {
-  "code": "<script setup lang=\"ts\">\nimport { ref, computed } from 'vue'\n\nconst count = ref(0)\nconst double = computed(() => count.value * 2)\n</script>\n\n<template>\n  <button @click=\"count++\">count is: {{ count }}</button>\n  <p>Count is: {{ count }}</p>\n</template>\n",
+  "code": "import { ref, computed } from 'vue'\n\nconst count = ref(0)\nconst double = computed(() => count.value * 2)\n\nexport default () => (\n  <>\n    <button onClick={()=>count.value++}>count is: { count }</button>\n    <p>Count is: { count }</p>\n  </>\n)\n",
   "nodes": [
     {
       "type": "hover",
@@ -15,37 +15,37 @@
           "{@link https://vuejs.org/api/reactivity-core.html#ref}"
         ]
       ],
-      "start": 34,
+      "start": 9,
       "length": 3,
       "target": "ref",
-      "line": 1,
+      "line": 0,
       "character": 9
     },
     {
       "type": "hover",
       "text": "(alias) const computed: {\n    <T>(getter: ComputedGetter<T>, debugOptions?: DebuggerOptions): ComputedRef<T>;\n    <T, S = T>(options: WritableComputedOptions<T, S>, debugOptions?: DebuggerOptions): WritableComputedRef<T, S>;\n}\nimport computed",
-      "start": 39,
+      "start": 14,
       "length": 8,
       "target": "computed",
-      "line": 1,
+      "line": 0,
       "character": 14
     },
     {
       "type": "query",
       "text": "(alias) const computed: {\n    <T>(getter: ComputedGetter<T>, debugOptions?: DebuggerOptions): ComputedRef<T>;\n    <T, S = T>(options: WritableComputedOptions<T, S>, debugOptions?: DebuggerOptions): WritableComputedRef<T, S>;\n}\nimport computed",
-      "start": 39,
+      "start": 14,
       "length": 8,
       "target": "computed",
-      "line": 1,
+      "line": 0,
       "character": 14
     },
     {
       "type": "hover",
       "text": "const count: Ref<number, number>",
-      "start": 68,
+      "start": 43,
       "length": 5,
       "target": "count",
-      "line": 3,
+      "line": 2,
       "character": 6
     },
     {
@@ -62,28 +62,28 @@
           "{@link https://vuejs.org/api/reactivity-core.html#ref}"
         ]
       ],
-      "start": 76,
+      "start": 51,
       "length": 3,
       "target": "ref",
-      "line": 3,
+      "line": 2,
       "character": 14
     },
     {
       "type": "hover",
       "text": "const double: ComputedRef<number>",
-      "start": 89,
+      "start": 64,
       "length": 6,
       "target": "double",
-      "line": 4,
+      "line": 3,
       "character": 6
     },
     {
       "type": "query",
       "text": "const double: ComputedRef<number>",
-      "start": 89,
+      "start": 64,
       "length": 6,
       "target": "double",
-      "line": 4,
+      "line": 3,
       "character": 6
     },
     {
@@ -108,118 +108,127 @@
           "{@link https://vuejs.org/api/reactivity-core.html#computed}"
         ]
       ],
-      "start": 98,
+      "start": 73,
       "length": 8,
       "target": "computed",
-      "line": 4,
+      "line": 3,
       "character": 15
     },
     {
       "type": "hover",
       "text": "const count: Ref<number, number>",
-      "start": 113,
+      "start": 88,
       "length": 5,
       "target": "count",
-      "line": 4,
+      "line": 3,
       "character": 30
     },
     {
       "type": "hover",
       "text": "(property) Ref<number, number>.value: number",
-      "start": 119,
+      "start": 94,
       "length": 5,
       "target": "value",
-      "line": 4,
+      "line": 3,
       "character": 36
     },
     {
       "type": "hover",
       "text": "(property) button: ButtonHTMLAttributes & ReservedProps",
-      "start": 155,
+      "start": 139,
       "length": 6,
       "target": "button",
-      "line": 8,
-      "character": 3
+      "line": 7,
+      "character": 5
     },
     {
       "type": "hover",
       "text": "(property) onClick?: ((payload: MouseEvent) => void) | undefined",
-      "start": 163,
-      "length": 5,
-      "target": "click",
-      "line": 8,
-      "character": 11
+      "start": 146,
+      "length": 7,
+      "target": "onClick",
+      "line": 7,
+      "character": 12
     },
     {
       "type": "query",
       "text": "(property) onClick?: ((payload: MouseEvent) => void) | undefined",
-      "start": 163,
-      "length": 5,
-      "target": "click",
-      "line": 8,
-      "character": 11
+      "start": 146,
+      "length": 7,
+      "target": "onClick",
+      "line": 7,
+      "character": 12
     },
     {
       "type": "hover",
       "text": "const count: Ref<number, number>",
-      "start": 170,
+      "start": 159,
       "length": 5,
       "target": "count",
-      "line": 8,
-      "character": 18
+      "line": 7,
+      "character": 25
+    },
+    {
+      "type": "hover",
+      "text": "(property) Ref<number, number>.value: number",
+      "start": 165,
+      "length": 5,
+      "target": "value",
+      "line": 7,
+      "character": 31
     },
     {
       "type": "hover",
       "text": "const count: Ref<number, number>",
-      "start": 192,
+      "start": 186,
       "length": 5,
       "target": "count",
-      "line": 8,
-      "character": 40
+      "line": 7,
+      "character": 52
     },
     {
       "type": "hover",
       "text": "(property) button: ButtonHTMLAttributes & ReservedProps",
-      "start": 202,
+      "start": 195,
       "length": 6,
       "target": "button",
-      "line": 8,
-      "character": 50
+      "line": 7,
+      "character": 61
     },
     {
       "type": "hover",
       "text": "(property) p: HTMLAttributes & ReservedProps",
-      "start": 213,
+      "start": 208,
       "length": 1,
       "target": "p",
-      "line": 9,
-      "character": 3
+      "line": 8,
+      "character": 5
     },
     {
       "type": "hover",
       "text": "const count: Ref<number, number>",
-      "start": 228,
+      "start": 222,
       "length": 5,
       "target": "count",
-      "line": 9,
-      "character": 18
+      "line": 8,
+      "character": 19
     },
     {
       "type": "query",
-      "text": "(property) count: number",
-      "start": 228,
+      "text": "const count: Ref<number, number>",
+      "start": 222,
       "length": 5,
       "target": "count",
-      "line": 9,
-      "character": 18
+      "line": 8,
+      "character": 19
     },
     {
       "type": "hover",
       "text": "(property) p: HTMLAttributes & ReservedProps",
-      "start": 238,
+      "start": 231,
       "length": 1,
       "target": "p",
-      "line": 9,
+      "line": 8,
       "character": 28
     }
   ],

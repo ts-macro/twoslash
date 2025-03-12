@@ -1,4 +1,3 @@
-<script setup lang="ts">
 // ---cut-start---
 import { ref } from "vue"
 interface Foo {
@@ -15,11 +14,10 @@ declare const foo: {
   hi: string
 }
 // ---cut-end---
-</script>
 
-<template>
+export default () => (
   <div>
-    {{ hi.bar }}
-    //    ^?
+    { hi.value.bar }
+    //         ^?
   </div>
-</template>
+)

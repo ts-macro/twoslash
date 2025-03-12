@@ -1,4 +1,3 @@
-<script setup lang="ts">
 import { ref } from "vue"
 // ---cut-before---
 interface Foo {
@@ -14,10 +13,9 @@ function useFoo() {
 declare const foo: {
   hi: string
 }
-</script>
 
-<template>
+export default () => (
   <div>
-    {{ hi.bar }}
+    { hi.value.bar }
   </div>
-</template>
+)

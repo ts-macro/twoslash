@@ -1,0 +1,78 @@
+{
+  "code": "const { hi } = useFoo()\n\nexport default () => (\n  <div>\n    { hi.value.bar }\n  </div>\n)\n",
+  "nodes": [
+    {
+      "type": "hover",
+      "text": "const hi: Ref<{\n    bar: string;\n}, Foo | {\n    bar: string;\n}>",
+      "start": 8,
+      "length": 2,
+      "target": "hi",
+      "line": 0,
+      "character": 8
+    },
+    {
+      "type": "hover",
+      "text": "function useFoo(): {\n    hi: Ref<{\n        bar: string;\n    }, Foo | {\n        bar: string;\n    }>;\n}",
+      "start": 15,
+      "length": 6,
+      "target": "useFoo",
+      "line": 0,
+      "character": 15
+    },
+    {
+      "type": "hover",
+      "text": "(property) div: HTMLAttributes & ReservedProps",
+      "start": 51,
+      "length": 3,
+      "target": "div",
+      "line": 3,
+      "character": 3
+    },
+    {
+      "type": "hover",
+      "text": "const hi: Ref<{\n    bar: string;\n}, Foo | {\n    bar: string;\n}>",
+      "start": 62,
+      "length": 2,
+      "target": "hi",
+      "line": 4,
+      "character": 6
+    },
+    {
+      "type": "hover",
+      "text": "(property) Ref<{ bar: string; }, Foo | { bar: string; }>.value: {\n    bar: string;\n}",
+      "start": 65,
+      "length": 5,
+      "target": "value",
+      "line": 4,
+      "character": 9
+    },
+    {
+      "type": "hover",
+      "text": "(property) bar: string",
+      "start": 71,
+      "length": 3,
+      "target": "bar",
+      "line": 4,
+      "character": 15
+    },
+    {
+      "type": "query",
+      "text": "(property) bar: string",
+      "start": 71,
+      "length": 3,
+      "target": "bar",
+      "line": 4,
+      "character": 15
+    },
+    {
+      "type": "hover",
+      "text": "(property) div: HTMLAttributes & ReservedProps",
+      "start": 81,
+      "length": 3,
+      "target": "div",
+      "line": 5,
+      "character": 4
+    }
+  ],
+  "flags": []
+}

@@ -1,5 +1,4 @@
-<script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, defineComponent } from 'vue'
 //             ^?
 
 
@@ -10,10 +9,8 @@ const count = ref(0)
 
 const double = computed(() => count.value * 2)
 //     ^?
-</script>
 
-<script>
-export default {
+export default defineComponent({
   name: 'HelloWorld',
   data() {
     return {
@@ -24,11 +21,11 @@ export default {
     greet() {
       console.log(this.msg)
     }
+  },
+  render(){
+    return (
+      <button onClick={()=>count.value++}>{ this.msg } Count is: { count }</button>
+      //           ^?
+    )
   }
-}
-</script>
-
-<template>
-  <button @click="count++">{{ msg }} Count is: {{ count }}</button>
-//           ^?
-</template>
+})

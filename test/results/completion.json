@@ -1,5 +1,5 @@
 {
-  "code": "<script setup lang=\"ts\">\nimport { ref } from \"vue\"\n\nconst count1 = ref(1)\n\nfunction count2() {\n  return count1.value + 1\n}\n</script>\n\n<template>\n  <div>\n    {{ count1 }}\n  </div>\n</template>\n",
+  "code": "import { ref } from \"vue\"\n\nconst count1 = ref(1)\n\nfunction count2() {\n  return count1.value + 1\n}\n\nexport default () => (\n  <div>\n    { count1 }\n  </div>\n)\n",
   "nodes": [
     {
       "type": "hover",
@@ -15,19 +15,19 @@
           "{@link https://vuejs.org/api/reactivity-core.html#ref}"
         ]
       ],
-      "start": 34,
+      "start": 9,
       "length": 3,
       "target": "ref",
-      "line": 1,
+      "line": 0,
       "character": 9
     },
     {
       "type": "hover",
       "text": "const count1: Ref<number, number>",
-      "start": 58,
+      "start": 33,
       "length": 6,
       "target": "count1",
-      "line": 3,
+      "line": 2,
       "character": 6
     },
     {
@@ -44,81 +44,111 @@
           "{@link https://vuejs.org/api/reactivity-core.html#ref}"
         ]
       ],
-      "start": 67,
+      "start": 42,
       "length": 3,
       "target": "ref",
-      "line": 3,
+      "line": 2,
       "character": 15
     },
     {
       "type": "hover",
       "text": "function count2(): number",
-      "start": 84,
+      "start": 59,
       "length": 6,
       "target": "count2",
-      "line": 5,
+      "line": 4,
       "character": 9
     },
     {
       "type": "hover",
       "text": "const count1: Ref<number, number>",
-      "start": 104,
+      "start": 79,
       "length": 6,
       "target": "count1",
-      "line": 6,
+      "line": 5,
       "character": 9
     },
     {
       "type": "hover",
       "text": "(property) Ref<number, number>.value: number",
-      "start": 111,
+      "start": 86,
       "length": 5,
       "target": "value",
-      "line": 6,
+      "line": 5,
       "character": 16
     },
     {
       "type": "hover",
       "text": "(property) div: HTMLAttributes & ReservedProps",
-      "start": 148,
+      "start": 125,
       "length": 3,
       "target": "div",
-      "line": 11,
+      "line": 9,
       "character": 3
     },
     {
       "type": "hover",
-      "text": "(property) count1: number",
-      "start": 160,
+      "text": "const count1: Ref<number, number>",
+      "start": 136,
       "length": 6,
       "target": "count1",
-      "line": 12,
-      "character": 7
+      "line": 10,
+      "character": 6
     },
     {
       "type": "completion",
-      "start": 161,
+      "start": 138,
       "length": 0,
       "completions": [
         {
           "name": "count1",
-          "kind": "property",
+          "kind": "const",
           "kindModifiers": "",
           "sortText": "11"
+        },
+        {
+          "name": "count2",
+          "kind": "function",
+          "kindModifiers": "",
+          "sortText": "11"
+        },
+        {
+          "name": "confirm",
+          "kind": "function",
+          "kindModifiers": "declare",
+          "sortText": "15"
+        },
+        {
+          "name": "console",
+          "kind": "var",
+          "kindModifiers": "declare",
+          "sortText": "15"
+        },
+        {
+          "name": "const",
+          "kind": "keyword",
+          "kindModifiers": "",
+          "sortText": "15"
+        },
+        {
+          "name": "continue",
+          "kind": "keyword",
+          "kindModifiers": "",
+          "sortText": "15"
         }
       ],
-      "completionsPrefix": "c",
-      "line": 12,
+      "completionsPrefix": "co",
+      "line": 10,
       "character": 8,
       "target": ""
     },
     {
       "type": "hover",
       "text": "(property) div: HTMLAttributes & ReservedProps",
-      "start": 174,
+      "start": 149,
       "length": 3,
       "target": "div",
-      "line": 13,
+      "line": 11,
       "character": 4
     }
   ],

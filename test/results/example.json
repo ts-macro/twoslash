@@ -1,5 +1,5 @@
 {
-  "code": "<script setup lang=\"ts\">\nimport { ref, computed } from 'vue'\n\n\n\n\n\nconst count = ref(0)\n\nconst double = computed(() => count.value * 2)\n</script>\n\n<script>\nexport default {\n  name: 'HelloWorld',\n  data() {\n    return {\n      msg: 'Hello!'\n    }\n  },\n  methods: {\n    greet() {\n      console.log(this.msg)\n    }\n  }\n}\n</script>\n\n<template>\n  <button @click=\"count++\">{{ msg }} Count is: {{ count }}</button>\n</template>\n",
+  "code": "import { ref, computed, defineComponent } from 'vue'\n\n\n\n\n\nconst count = ref(0)\n\nconst double = computed(() => count.value * 2)\n\nexport default defineComponent({\n  name: 'HelloWorld',\n  data() {\n    return {\n      msg: 'Hello!'\n    }\n  },\n  methods: {\n    greet() {\n      console.log(this.msg)\n    }\n  },\n  render(){\n    return (\n      <button onClick={()=>count.value++}>{ this.msg } Count is: { count }</button>\n    )\n  }\n})\n",
   "nodes": [
     {
       "type": "hover",
@@ -15,37 +15,46 @@
           "{@link https://vuejs.org/api/reactivity-core.html#ref}"
         ]
       ],
-      "start": 34,
+      "start": 9,
       "length": 3,
       "target": "ref",
-      "line": 1,
+      "line": 0,
       "character": 9
     },
     {
       "type": "hover",
       "text": "(alias) const computed: {\n    <T>(getter: ComputedGetter<T>, debugOptions?: DebuggerOptions): ComputedRef<T>;\n    <T, S = T>(options: WritableComputedOptions<T, S>, debugOptions?: DebuggerOptions): WritableComputedRef<T, S>;\n}\nimport computed",
-      "start": 39,
+      "start": 14,
       "length": 8,
       "target": "computed",
-      "line": 1,
+      "line": 0,
       "character": 14
     },
     {
       "type": "query",
       "text": "(alias) const computed: {\n    <T>(getter: ComputedGetter<T>, debugOptions?: DebuggerOptions): ComputedRef<T>;\n    <T, S = T>(options: WritableComputedOptions<T, S>, debugOptions?: DebuggerOptions): WritableComputedRef<T, S>;\n}\nimport computed",
-      "start": 39,
+      "start": 14,
       "length": 8,
       "target": "computed",
-      "line": 1,
+      "line": 0,
       "character": 14
     },
     {
       "type": "hover",
+      "text": "(alias) function defineComponent<Props extends Record<string, any>, E extends EmitsOptions = {}, EE extends string = string, S extends SlotsType = {}>(setup: (props: Props, ctx: SetupContext<E, S>) => RenderFunction | Promise<RenderFunction>, options?: Pick<ComponentOptions, \"name\" | \"inheritAttrs\"> & {\n    props?: (keyof Props)[];\n    emits?: E | EE[];\n    slots?: S;\n}): DefineSetupFnComponent<Props, E, S> (+2 overloads)\nimport defineComponent",
+      "start": 24,
+      "length": 15,
+      "target": "defineComponent",
+      "line": 0,
+      "character": 24
+    },
+    {
+      "type": "hover",
       "text": "const count: Ref<number, number>",
-      "start": 72,
+      "start": 64,
       "length": 5,
       "target": "count",
-      "line": 7,
+      "line": 6,
       "character": 6
     },
     {
@@ -62,28 +71,28 @@
           "{@link https://vuejs.org/api/reactivity-core.html#ref}"
         ]
       ],
-      "start": 80,
+      "start": 72,
       "length": 3,
       "target": "ref",
-      "line": 7,
+      "line": 6,
       "character": 14
     },
     {
       "type": "hover",
       "text": "const double: ComputedRef<number>",
-      "start": 94,
+      "start": 86,
       "length": 6,
       "target": "double",
-      "line": 9,
+      "line": 8,
       "character": 6
     },
     {
       "type": "query",
       "text": "const double: ComputedRef<number>",
-      "start": 94,
+      "start": 86,
       "length": 6,
       "target": "double",
-      "line": 9,
+      "line": 8,
       "character": 6
     },
     {
@@ -108,73 +117,82 @@
           "{@link https://vuejs.org/api/reactivity-core.html#computed}"
         ]
       ],
-      "start": 103,
+      "start": 95,
       "length": 8,
       "target": "computed",
-      "line": 9,
+      "line": 8,
       "character": 15
     },
     {
       "type": "hover",
       "text": "const count: Ref<number, number>",
-      "start": 118,
+      "start": 110,
       "length": 5,
       "target": "count",
-      "line": 9,
+      "line": 8,
       "character": 30
     },
     {
       "type": "hover",
       "text": "(property) Ref<number, number>.value: number",
-      "start": 124,
+      "start": 116,
       "length": 5,
       "target": "value",
-      "line": 9,
+      "line": 8,
       "character": 36
     },
     {
       "type": "hover",
+      "text": "(alias) defineComponent<unknown, ComponentObjectPropsOptions<Data>, string, {}, {}, string, {\n    msg: string;\n}, {}, {}, {\n    greet(): void;\n}, ComponentOptionsMixin, ComponentOptionsMixin, {}, string, {}, {}, {}, string, ComponentProvideOptions, {}, {}, {}, any>(options: {\n    ...;\n} & ... 1 more ... & ThisType<...>): DefineComponent<...> (+2 overloads)\nimport defineComponent",
+      "start": 143,
+      "length": 15,
+      "target": "defineComponent",
+      "line": 10,
+      "character": 15
+    },
+    {
+      "type": "hover",
       "text": "(property) ComponentOptionsBase<Props, RawBindings, D, C extends ComputedOptions, M extends MethodOptions, Mixin extends ComponentOptionsMixin, Extends extends ComponentOptionsMixin, E extends EmitsOptions, EE extends string = string, Defaults = {}, I extends ComponentInjectOptions = {}, II extends string = string, S extends SlotsType = {}, LC extends Record<string, Component> = {}, Directives extends Record<string, Directive> = {}, Exposed extends string = string, Provide extends ComponentProvideOptions = ComponentProvideOptions>.name?: string | undefined",
-      "start": 174,
+      "start": 163,
       "length": 4,
       "target": "name",
-      "line": 14,
+      "line": 11,
       "character": 2
     },
     {
       "type": "hover",
       "text": "(property) LegacyOptions<ToResolvedProps<{}, {}>, { msg: string; }, {}, { greet(): void; }, ComponentOptionsMixin, ComponentOptionsMixin, {}, string, ComponentProvideOptions>.data?: ((this: CreateComponentPublicInstanceWithMixins<...>, vm: CreateComponentPublicInstanceWithMixins<ToResolvedProps<{}, {}>, {}, {}, {}, MethodOptions, ComponentOptionsMixin, ComponentOptionsMixin, ... 18 more ..., {}>) => {\n    ...;\n}) | undefined",
-      "start": 196,
+      "start": 185,
       "length": 4,
       "target": "data",
-      "line": 15,
+      "line": 12,
       "character": 2
     },
     {
       "type": "hover",
       "text": "(property) msg: string",
-      "start": 224,
+      "start": 213,
       "length": 3,
       "target": "msg",
-      "line": 17,
+      "line": 14,
       "character": 6
     },
     {
       "type": "hover",
       "text": "(property) LegacyOptions<ToResolvedProps<{}, {}>, { msg: string; }, {}, { greet(): void; }, ComponentOptionsMixin, ComponentOptionsMixin, {}, string, ComponentProvideOptions>.methods?: {\n    greet(): void;\n} | undefined",
-      "start": 251,
+      "start": 240,
       "length": 7,
       "target": "methods",
-      "line": 20,
+      "line": 17,
       "character": 2
     },
     {
       "type": "hover",
       "text": "(method) greet(): void",
-      "start": 266,
+      "start": 255,
       "length": 5,
       "target": "greet",
-      "line": 21,
+      "line": 18,
       "character": 4
     },
     {
@@ -187,10 +205,10 @@
           "[source](https://github.com/nodejs/node/blob/v22.x/lib/console.js)"
         ]
       ],
-      "start": 282,
+      "start": 271,
       "length": 7,
       "target": "console",
-      "line": 22,
+      "line": 19,
       "character": 6
     },
     {
@@ -203,47 +221,56 @@
           "v0.1.100"
         ]
       ],
-      "start": 290,
+      "start": 279,
       "length": 3,
       "target": "log",
-      "line": 22,
+      "line": 19,
       "character": 14
     },
     {
       "type": "hover",
       "text": "(property) msg: string",
-      "start": 299,
+      "start": 288,
       "length": 3,
       "target": "msg",
-      "line": 22,
+      "line": 19,
       "character": 23
     },
     {
       "type": "hover",
+      "text": "(property) ComponentOptionsBase<Props, RawBindings, D, C extends ComputedOptions, M extends MethodOptions, Mixin extends ComponentOptionsMixin, Extends extends ComponentOptionsMixin, E extends EmitsOptions, EE extends string = string, Defaults = {}, I extends ComponentInjectOptions = {}, II extends string = string, S extends SlotsType = {}, LC extends Record<string, Component> = {}, Directives extends Record<string, Directive> = {}, Exposed extends string = string, Provide extends ComponentProvideOptions = ComponentProvideOptions>.render?: Function | undefined",
+      "start": 306,
+      "length": 6,
+      "target": "render",
+      "line": 22,
+      "character": 2
+    },
+    {
+      "type": "hover",
       "text": "(property) button: ButtonHTMLAttributes & ReservedProps",
-      "start": 341,
+      "start": 336,
       "length": 6,
       "target": "button",
-      "line": 29,
-      "character": 3
+      "line": 24,
+      "character": 7
     },
     {
       "type": "hover",
       "text": "(property) onClick?: ((payload: MouseEvent) => void) | undefined",
-      "start": 349,
-      "length": 5,
-      "target": "click",
-      "line": 29,
-      "character": 11
+      "start": 343,
+      "length": 7,
+      "target": "onClick",
+      "line": 24,
+      "character": 14
     },
     {
       "type": "query",
       "text": "(property) onClick?: ((payload: MouseEvent) => void) | undefined",
-      "start": 349,
-      "length": 5,
-      "target": "click",
-      "line": 29,
-      "character": 11
+      "start": 343,
+      "length": 7,
+      "target": "onClick",
+      "line": 24,
+      "character": 14
     },
     {
       "type": "hover",
@@ -251,35 +278,44 @@
       "start": 356,
       "length": 5,
       "target": "count",
-      "line": 29,
-      "character": 18
+      "line": 24,
+      "character": 27
+    },
+    {
+      "type": "hover",
+      "text": "(property) Ref<number, number>.value: number",
+      "start": 362,
+      "length": 5,
+      "target": "value",
+      "line": 24,
+      "character": 33
     },
     {
       "type": "hover",
       "text": "(property) msg: string",
-      "start": 368,
+      "start": 378,
       "length": 3,
       "target": "msg",
-      "line": 29,
-      "character": 30
+      "line": 24,
+      "character": 49
     },
     {
       "type": "hover",
       "text": "const count: Ref<number, number>",
-      "start": 388,
+      "start": 396,
       "length": 5,
       "target": "count",
-      "line": 29,
-      "character": 50
+      "line": 24,
+      "character": 67
     },
     {
       "type": "hover",
       "text": "(property) button: ButtonHTMLAttributes & ReservedProps",
-      "start": 398,
+      "start": 405,
       "length": 6,
       "target": "button",
-      "line": 29,
-      "character": 60
+      "line": 24,
+      "character": 76
     }
   ],
   "flags": []
