@@ -216,7 +216,7 @@ export function createTwoslasher(createOptions: CreateTwoslashTsmOptions = {}): 
     const mappedRemovals = [
       ...sourceMeta.removals,
       ...result.meta.removals.map((r) => {
-        const start = get(map.toSourceLocation(r[0]), 0)?.[0] ?? code.match(/(?<=<script[\s\S]*>\s)/)?.index
+        const start = get(map.toSourceLocation(r[0]), 0)?.[0]
         const end = get(map.toSourceLocation(r[1]), 0)?.[0]
         if (start == null || end == null || start < 0 || end < 0 || start >= end)
           return undefined
