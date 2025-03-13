@@ -45,7 +45,7 @@ export interface CreateTwoslashTsmOptions extends CreateTwoslashOptions, TsmSpec
   debugShowGeneratedCode?: boolean
 }
 
-export interface TwoslashTsmExecuteOptions extends TwoslashExecuteOptions, TsmSpecificOptions {
+export interface TwoslashTsmExecuteOptions extends TwoslashExecuteOptions {
 }
 
 const placeholderPlugin = createPlugin(() => {
@@ -87,13 +87,12 @@ export function createTwoslasher(createOptions: CreateTwoslashTsmOptions = {}): 
 
   function twoslasher(code: string, extension?: string, options: TwoslashTsmExecuteOptions = {}) {
     // createOptions
-    const tsmCompilerOptions: Partial<TsmCompilerOptions> = {
-      ...createOptions.tsmCompilerOptions,
-      ...options.tsmCompilerOptions,
-    }
+    const tsmCompilerOptions: Partial<TsmCompilerOptions> = createOptions.tsmCompilerOptions ?? { plugins: [] }
     const compilerOptions: Partial<CompilerOptions> = {
       ...defaultCompilerOptions,
+      noImplicitAny: false,
       ...options.compilerOptions,
+      ...createOptions.compilerOptions,
     }
     const handbookOptions: Partial<HandbookOptions> = {
       ...defaultHandbookOptions,
@@ -166,12 +165,7 @@ export function createTwoslasher(createOptions: CreateTwoslashTsmOptions = {}): 
     // Pass compiled to TS file to twoslash
     const result = twoslasherBase(compiled, 'tsx', {
       ...options,
-      compilerOptions: {
-        jsx: 1 satisfies ts.JsxEmit.Preserve,
-        jsxImportSource: 'vue',
-        noImplicitAny: false,
-        ...compilerOptions,
-      },
+      compilerOptions,
       handbookOptions: {
         ...handbookOptions,
         keepNotations: true,
