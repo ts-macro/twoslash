@@ -139,8 +139,7 @@
       ],
       "completionsPrefix": "co",
       "line": 10,
-      "character": 8,
-      "target": ""
+      "character": 8
     },
     {
       "type": "hover",

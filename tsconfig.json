@@ -11,6 +11,7 @@
       "~/*": ["src/*"]
     },
     "resolveJsonModule": true,
+    "types": ["vue/jsx"],
     "allowJs": true,
     "strict": true,
     "strictNullChecks": true,

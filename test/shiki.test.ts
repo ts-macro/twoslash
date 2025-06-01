@@ -34,6 +34,13 @@ it('highlight tsx', async () => {
         renderer: rendererRich({
           lang: 'ts',
         }),
+        twoslashOptions: {
+          compilerOptions: {
+            jsx: 1,
+            jsxImportSource: 'vue',
+            types: ['vue/jsx'],
+          },
+        },
       }),
     ],
   })
@@ -56,6 +63,13 @@ it('highlight raw', async () => {
         renderer: rendererRich({
           lang: 'ts',
         }),
+        twoslashOptions: {
+          compilerOptions: {
+            jsx: 1,
+            jsxImportSource: 'vue',
+            types: ['vue/jsx'],
+          },
+        },
       }),
     ],
   })

@@ -3,7 +3,13 @@ import { createTwoslasher } from '../src/index'
 
 const code = await import('./fixtures/query-basic.tsx?raw').then(m => m.default)
 
-const twoslasher = createTwoslasher()
+const twoslasher = createTwoslasher({
+  compilerOptions: {
+    jsx: 1,
+    jsxImportSource: 'vue',
+    types: ['vue/jsx'],
+  },
+})
 
 describe('basic', () => {
   const result = twoslasher(code, 'tsx')

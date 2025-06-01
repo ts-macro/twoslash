@@ -19,7 +19,13 @@ const filters: RegExp[] = [
 if (process.env.CI && filters.length)
   throw new Error('Should not filters fixture tests in CI, did you forget to remove them?')
 
-const twoslasher = createTwoslasher()
+const twoslasher = createTwoslasher({
+  compilerOptions: {
+    jsx: 1,
+    jsxImportSource: 'vue',
+    types: ['vue/jsx'],
+  },
+})
 
 Object.entries(fixtures).forEach(([path, fixture]) => {
   path = path.replace(/\\/g, '/')
